@@ -35,7 +35,6 @@ Validar uma plataforma de monitoramento elétrico utilizando dados simulados env
 ---
 
 ## Estrutura do Projeto
-## Estrutura do Projeto
 
 ```text
 smart-building-lab/
