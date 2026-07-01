@@ -1,0 +1,1382 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"\npadding:5px 18px;\nborder-radius:14px;\nbackground:linear-gradient(180deg,#111827 0%,#0b1020 100%);\nborder:1px solid rgba(148,163,184,.18);\nfont-family:'Segoe UI',Arial,sans-serif;\n\">\n\n    <div style=\"\n    color:#38bdf8;\n    font-size:11px;\n    font-weight:700;\n    letter-spacing:1.4px;\n    text-transform:uppercase;\">\n        SMART BUILDING\n    </div>\n\n    <div style=\"\n    margin-top:3px;\n    color:#F8FAFC;\n    font-size:20px;\n    font-weight:800;\n    line-height:1.2;\">\n        HW-GERAL-01\n    </div>\n\n    <div style=\"\n    margin-top:4px;\n    color:#94A3B8;\n    font-size:13px;\">\n        Medidor Principal de Energia • Entrada Geral\n    </div>\n\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.1.1",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efqq06cl7ry0wd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": ""
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 3
+      },
+      "id": 4,
+      "options": {
+        "afterRender": "",
+        "content": "<div style=\"width:100%;height:100%;padding:22px;border-radius:18px;background:linear-gradient(180deg,#111827 0%,#0b1020 100%);border:1px solid rgba(148,163,184,.18);font-family:'Segoe UI',Arial,sans-serif;box-sizing:border-box;box-shadow:0 18px 40px rgba(0,0,0,.28);\">\n\n  <div style=\"display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;\">\n    <div>\n      <div style=\"color:#f8fafc;font-size:20px;font-weight:800;letter-spacing:.2px;\">Fase A</div>\n      <div style=\"color:#64748b;font-size:12px;margin-top:5px;\">Entrada Geral • Sensor 1</div>\n    </div>\n\n    <div style=\"padding:6px 10px;border-radius:999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#34d399;font-size:11px;font-weight:700;\">\n      NORMAL\n    </div>\n  </div>\n\n  {{#each data}}\n    {{#if @first}}\n      <div style=\"margin-bottom:18px;\">\n        <div style=\"color:#94a3b8;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;margin-bottom:6px;\">Tensão</div>\n        <div style=\"display:flex;align-items:flex-end;gap:8px;\">\n          <div style=\"font-size:52px;font-weight:900;color:#f8fafc;line-height:1;\">\n            {{lookup this \"Last *\"}}\n          </div>\n          <div style=\"font-size:20px;font-weight:700;color:#38bdf8;margin-bottom:6px;\">V</div>\n        </div>\n      </div>\n    {{/if}}\n  {{/each}}\n\n  <div style=\"height:1px;background:linear-gradient(90deg,rgba(56,189,248,.45),rgba(255,255,255,.04));margin:18px 0;\"></div>\n\n  <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:12px;\">\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">Corrente</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 1) \"Last *\"}} <span style=\"font-size:12px;color:#64748b;\">A</span>\n      </div>\n    </div>\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">Potência</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 2) \"Last *\"}} <span style=\"font-size:12px;color:#64748b;\">W</span>\n      </div>\n    </div>\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">FP</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 3) \"Last *\"}}\n      </div>\n    </div>\n\n  </div>\n</div>",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "none",
+          "language": "handlebars"
+        },
+        "editors": [
+          "styles"
+        ],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "6.2.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Tensão (V)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Tensão - Fase A"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Corrente (A)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Corrente - Fase A"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Potência Ativa (W)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Potência Ativa - Fase A"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Fator de Potência"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Fator de Potência - Fase A"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": false,
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efqq06cl7ry0wd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": ""
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 3
+      },
+      "id": 5,
+      "options": {
+        "afterRender": "",
+        "content": "<div style=\"width:100%;height:100%;padding:22px;border-radius:18px;background:linear-gradient(180deg,#111827 0%,#0b1020 100%);border:1px solid rgba(148,163,184,.18);font-family:'Segoe UI',Arial,sans-serif;box-sizing:border-box;box-shadow:0 18px 40px rgba(0,0,0,.28);\">\n\n  <div style=\"display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;\">\n    <div>\n      <div style=\"color:#f8fafc;font-size:20px;font-weight:800;letter-spacing:.2px;\">Fase B</div>\n      <div style=\"color:#64748b;font-size:12px;margin-top:5px;\">Entrada Geral • Sensor 1</div>\n    </div>\n\n    <div style=\"padding:6px 10px;border-radius:999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#34d399;font-size:11px;font-weight:700;\">\n      NORMAL\n    </div>\n  </div>\n\n  {{#each data}}\n    {{#if @first}}\n      <div style=\"margin-bottom:18px;\">\n        <div style=\"color:#94a3b8;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;margin-bottom:6px;\">Tensão</div>\n        <div style=\"display:flex;align-items:flex-end;gap:8px;\">\n          <div style=\"font-size:52px;font-weight:900;color:#f8fafc;line-height:1;\">\n            {{lookup this \"Last *\"}}\n          </div>\n          <div style=\"font-size:20px;font-weight:700;color:#38bdf8;margin-bottom:6px;\">V</div>\n        </div>\n      </div>\n    {{/if}}\n  {{/each}}\n\n  <div style=\"height:1px;background:linear-gradient(90deg,rgba(56,189,248,.45),rgba(255,255,255,.04));margin:18px 0;\"></div>\n\n  <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:12px;\">\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">Corrente</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 1) \"Last *\"}} <span style=\"font-size:12px;color:#64748b;\">A</span>\n      </div>\n    </div>\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">Potência</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 2) \"Last *\"}} <span style=\"font-size:12px;color:#64748b;\">W</span>\n      </div>\n    </div>\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">FP</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 3) \"Last *\"}}\n      </div>\n    </div>\n\n  </div>\n</div>",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "none",
+          "language": "handlebars"
+        },
+        "editors": [
+          "styles"
+        ],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "6.2.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Tensão (V)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Tensão - Fase B"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Corrente (A)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Corrente - Fase B"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Potência Ativa (W)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Potência Ativa - Fase B"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Fator de Potência"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Fator de Potência - Fase B"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": false,
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efqq06cl7ry0wd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": ""
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 3
+      },
+      "id": 6,
+      "options": {
+        "afterRender": "",
+        "content": "<div style=\"width:100%;height:100%;padding:22px;border-radius:18px;background:linear-gradient(180deg,#111827 0%,#0b1020 100%);border:1px solid rgba(148,163,184,.18);font-family:'Segoe UI',Arial,sans-serif;box-sizing:border-box;box-shadow:0 18px 40px rgba(0,0,0,.28);\">\n\n  <div style=\"display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;\">\n    <div>\n      <div style=\"color:#f8fafc;font-size:20px;font-weight:800;letter-spacing:.2px;\">Fase C</div>\n      <div style=\"color:#64748b;font-size:12px;margin-top:5px;\">Entrada Geral • Sensor 1</div>\n    </div>\n\n    <div style=\"padding:6px 10px;border-radius:999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#34d399;font-size:11px;font-weight:700;\">\n      NORMAL\n    </div>\n  </div>\n\n  {{#each data}}\n    {{#if @first}}\n      <div style=\"margin-bottom:18px;\">\n        <div style=\"color:#94a3b8;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;margin-bottom:6px;\">Tensão</div>\n        <div style=\"display:flex;align-items:flex-end;gap:8px;\">\n          <div style=\"font-size:52px;font-weight:900;color:#f8fafc;line-height:1;\">\n            {{lookup this \"Last *\"}}\n          </div>\n          <div style=\"font-size:20px;font-weight:700;color:#38bdf8;margin-bottom:6px;\">V</div>\n        </div>\n      </div>\n    {{/if}}\n  {{/each}}\n\n  <div style=\"height:1px;background:linear-gradient(90deg,rgba(56,189,248,.45),rgba(255,255,255,.04));margin:18px 0;\"></div>\n\n  <div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:12px;\">\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">Corrente</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 1) \"Last *\"}} <span style=\"font-size:12px;color:#64748b;\">A</span>\n      </div>\n    </div>\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">Potência</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 2) \"Last *\"}} <span style=\"font-size:12px;color:#64748b;\">W</span>\n      </div>\n    </div>\n\n    <div>\n      <div style=\"color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:7px;\">FP</div>\n      <div style=\"color:#e2e8f0;font-size:22px;font-weight:800;\">\n        {{lookup (lookup data 3) \"Last *\"}}\n      </div>\n    </div>\n\n  </div>\n</div>",
+        "contentPartials": [],
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "none",
+          "language": "handlebars"
+        },
+        "editors": [
+          "styles"
+        ],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "6.2.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Tensão (V)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Tensão - Fase C"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Corrente (A)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Corrente - Fase C"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Potência Ativa (W)"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Potência Ativa - Fase C"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "Fator de Potência"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Fator de Potência - Fase C"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": false,
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "efqq06cl7ry0wd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Potência Ativa - Fase A"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Potência Ativa - Fase B"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "efqq06cl7ry0wd"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Smart Building"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Medidor Principal - Entrada Geral"
+          },
+          "item": {
+            "filter": "Potência Ativa - Fase C"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "title": "Histórico de Carga Recente (kW)",
+      "transparent": true,
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Telemetria do Hardware Principal",
+  "uid": "badb421f-1ed8-47f8-a293-2ccd96acb136",
+  "version": 12
+}
