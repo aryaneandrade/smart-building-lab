@@ -22,13 +22,15 @@ Validar uma plataforma de monitoramento elétrico utilizando dados simulados env
 
 ## Arquitetura
 
-(imagem)
+![Arquitetura](images/arquitetura.png)
 
 ---
 
 ## Dashboards
 
-(imagens)
+![visao-geral](images/visao-geral.png)
+
+![telemetria](images/telemetria.png)
 
 ---
 
