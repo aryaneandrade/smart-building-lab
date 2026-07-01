@@ -1,0 +1,300 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: 663c7bf719f14372a43f2f7ae732d1ae
+      template: 'Template Smart Building - Medidor Trifasico'
+      name: 'Template Smart Building - Medidor Trifasico'
+      groups:
+        - name: Templates
+      items:
+        - uuid: 32fdb6fbdc74450b80d6194197c1571b
+          name: 'Frequência da Rede'
+          type: TRAP
+          key: 'smartbuilding.grid[frequency]'
+          value_type: FLOAT
+          units: Hz
+          triggers:
+            - uuid: 42090ac718bd4cdab6bcd5ce294b34c9
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.grid[frequency])<{$FREQUENCY.MIN}'
+              name: 'Frequência abaixo do permitido'
+              priority: HIGH
+            - uuid: afaddeb48693467e9010386ed227ee4e
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.grid[frequency])>{$FREQUENCY.MAX}'
+              name: 'Frequência acima do permitido'
+              priority: HIGH
+        - uuid: 4892ab346ea94f97884decf2ed3097c9
+          name: 'Potência Ativa - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[active_power,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: W
+          triggers:
+            - uuid: 1dd393ddfc904b7b979ad904ba99ed54
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[active_power,A])>{$ACTIVE_POWER.MAX}'
+              name: 'Potência ativa elevada - Fase A'
+              priority: AVERAGE
+        - uuid: 63722b253dc34f57b28b8f865921c92f
+          name: 'Potência Ativa - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[active_power,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: W
+          triggers:
+            - uuid: 3ef6cf6cbc0044fb92177c15add5406a
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[active_power,B])>{$ACTIVE_POWER.MAX}'
+              name: 'Potência ativa elevada - Fase B'
+              priority: AVERAGE
+        - uuid: 2e6c9e939dd144f1ba44055c781f3a7e
+          name: 'Potência Ativa - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[active_power,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: W
+          triggers:
+            - uuid: 588cbc523d2e4f21be1862602cb1bf5a
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[active_power,C])>{$ACTIVE_POWER.MAX}'
+              name: 'Potência ativa elevada - Fase C'
+              priority: AVERAGE
+        - uuid: 706a890359ce4692bd54e9c6e445c6c9
+          name: 'Potência Aparente - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[apparent_power,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: VA
+        - uuid: 491a917708a34be190e2e57d0d232256
+          name: 'Potência Aparente - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[apparent_power,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: VA
+        - uuid: 5fc92bc6b6b34fc2b88e4e0ff3ff2c29
+          name: 'Potência Aparente - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[apparent_power,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: VA
+        - uuid: 78bc3cf5162e4923a6c78fa13a561ad2
+          name: 'Corrente - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[current,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: A
+          triggers:
+            - uuid: 9d838757029a4f55bd605f5d29f82da4
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[current,A])>{$CURRENT.MAX}'
+              name: 'Corrente alta - Fase A'
+              priority: AVERAGE
+        - uuid: 2249bb0d08814f7dad03ada33a443ece
+          name: 'Corrente - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[current,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: A
+          triggers:
+            - uuid: 6586c000dcc845efa578671213473211
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[current,B])>{$CURRENT.MAX}'
+              name: 'Corrente alta - Fase B'
+              priority: AVERAGE
+        - uuid: 05d1766fd1cb4e9ea4a926db905e3e46
+          name: 'Corrente - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[current,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: A
+          triggers:
+            - uuid: 46fdb40995974f45a5503e2ce4f67d3a
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[current,C])>{$CURRENT.MAX}'
+              name: 'Corrente alta - Fase C'
+              priority: AVERAGE
+        - uuid: 39ee108d71c44978b2bde81a0878d977
+          name: 'Energia - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[energy,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: kWh
+        - uuid: e8689763c6e246d888d55c3740bff11a
+          name: 'Energia - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[energy,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: kWh
+        - uuid: 23c20c291793484c86417541efa85bda
+          name: 'Energia - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[energy,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: kWh
+        - uuid: 101a130ce2e44cb9896c870eeffe7e4d
+          name: 'Fator de Potência - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[power_factor,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          triggers:
+            - uuid: f2d98f7db17c43f893cb77ba7200c397
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[power_factor,A])<{$POWER_FACTOR.MIN}'
+              name: 'Fator de potência baixo - Fase A'
+              priority: WARNING
+        - uuid: 3cc19fe9d4ac41d1af5bd1923bf3af7c
+          name: 'Fator de Potência - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[power_factor,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          triggers:
+            - uuid: 725b318a81c347afa6989e4f4e010fa5
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[power_factor,B])<{$POWER_FACTOR.MIN}'
+              name: 'Fator de potência baixo - Fase B'
+              priority: WARNING
+        - uuid: 66c1bfed29ae46f18fff19fd7c010236
+          name: 'Fator de Potência - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[power_factor,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          triggers:
+            - uuid: af946b5423284eeebf37899ca5d67d7b
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[power_factor,C])<{$POWER_FACTOR.MIN}'
+              name: 'Fator de potência baixo - Fase C'
+              priority: WARNING
+        - uuid: 18d59caea277462098fe7113a0f6e80a
+          name: 'Potência Reativa - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[reactive_power,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: var
+        - uuid: e2a39f32bd73454fa74e8429b8ce0610
+          name: 'Potência Reativa - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[reactive_power,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: var
+        - uuid: 5fed9d4033d74692a3e215d982d455f4
+          name: 'Potência Reativa - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[reactive_power,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: var
+        - uuid: 05531cf1404d480fa71a9d3245bfe9f7
+          name: 'Tensão - Fase A'
+          type: TRAP
+          key: 'smartbuilding.phase[voltage,A]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: V
+          triggers:
+            - uuid: 4218aac8600d413a94085c6eba09604f
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[voltage,A])>{$VOLTAGE.MAX}'
+              name: 'Tensão alta - Fase A'
+              priority: HIGH
+            - uuid: 35ab463baa0448ac8126d4eced831936
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[voltage,A])<{$VOLTAGE.MIN}'
+              name: 'Tensão baixa - Fase A'
+              priority: HIGH
+        - uuid: e1ac4bdcfa554ef5943cf2a270531c3f
+          name: 'Tensão - Fase B'
+          type: TRAP
+          key: 'smartbuilding.phase[voltage,B]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: V
+          triggers:
+            - uuid: ce2c1d74ad34497cb5e3fbc5bc9329c1
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[voltage,B])>{$VOLTAGE.MAX}'
+              name: 'Tensão alta - Fase B'
+              priority: HIGH
+            - uuid: c7c5ec8001da4425a1afb35258cfbb00
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[voltage,B])<{$VOLTAGE.MIN}'
+              name: 'Tensão baixa - Fase B'
+              priority: HIGH
+        - uuid: 3c676f42028942e6a1b1784b1e24a86d
+          name: 'Tensão - Fase C'
+          type: TRAP
+          key: 'smartbuilding.phase[voltage,C]'
+          history: 7d
+          value_type: FLOAT
+          trends: 30d
+          units: V
+          triggers:
+            - uuid: 0974532a532d48abaf2af11231ca782e
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[voltage,C])>{$VOLTAGE.MAX}'
+              name: 'Tensão alta - Fase C'
+              priority: HIGH
+            - uuid: 5dbf401af7c14ed58306f9bea4471d8f
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.phase[voltage,C])<{$VOLTAGE.MIN}'
+              name: 'Tensão baixa - Fase C'
+              priority: HIGH
+        - uuid: 9f400ba3498942d88f02af5d4bc5f02c
+          name: 'Magnitude do Surto'
+          type: TRAP
+          key: 'smartbuilding.surge[magnitude]'
+          value_type: FLOAT
+          units: V
+          triggers:
+            - uuid: 658faee06d504908926d7d9f2cfa018c
+              expression: 'last(/Template Smart Building - Medidor Trifasico/smartbuilding.surge[magnitude])>={$SURGE.MIN}'
+              name: 'Surto elétrico detectado'
+              priority: DISASTER
+      macros:
+        - macro: '{$ACTIVE_POWER.MAX}'
+          value: '2500'
+          description: 'Potência ativa máxima'
+        - macro: '{$CURRENT.MAX}'
+          value: '10'
+          description: 'Corrente máxima'
+        - macro: '{$FREQUENCY.MAX}'
+          value: '60.5'
+          description: 'Frequência máxima'
+        - macro: '{$FREQUENCY.MIN}'
+          value: '59.5'
+          description: 'Frequência mínima'
+        - macro: '{$POWER_FACTOR.MIN}'
+          value: '0.90'
+          description: 'Fator de potência mínimo'
+        - macro: '{$SURGE.MIN}'
+          value: '1'
+          description: 'Valor mínimo para considerar um surto'
+        - macro: '{$VOLTAGE.MAX}'
+          value: '242'
+          description: 'Tensão máxima permitida'
+        - macro: '{$VOLTAGE.MIN}'
+          value: '198'
+          description: 'Tensão mínima permitida'
